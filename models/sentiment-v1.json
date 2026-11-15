@@ -1,0 +1,609 @@
+{
+  "version": "v1",
+  "features": "word",
+  "seed": 42,
+  "scikit_learn": "1.9.1",
+  "neutral_band": [
+    0.35,
+    0.65
+  ],
+  "training": {
+    "dataset": "Amazon Polarity (fancyzhx/amazon_polarity), Apache-2.0",
+    "rows": 150000,
+    "positive_share": 0.5042,
+    "fit_seconds": 31.5
+  },
+  "features_count": 200000,
+  "scoring_rows_per_second": 6828,
+  "in_domain": {
+    "model": {
+      "rows": 50000,
+      "accuracy": 0.929,
+      "macro_f1": 0.929,
+      "confusion_matrix": [
+        [
+          23134,
+          1731
+        ],
+        [
+          1818,
+          23317
+        ]
+      ],
+      "calibration": {
+        "expected_calibration_error": 0.026,
+        "bins": [
+          {
+            "band": "0.0-0.1",
+            "rows": 17170,
+            "mean_predicted": 0.025,
+            "actually_positive": 0.015
+          },
+          {
+            "band": "0.1-0.2",
+            "rows": 3187,
+            "mean_predicted": 0.144,
+            "actually_positive": 0.09
+          },
+          {
+            "band": "0.2-0.3",
+            "rows": 1885,
+            "mean_predicted": 0.247,
+            "actually_positive": 0.18
+          },
+          {
+            "band": "0.3-0.4",
+            "rows": 1373,
+            "mean_predicted": 0.349,
+            "actually_positive": 0.31
+          },
+          {
+            "band": "0.4-0.5",
+            "rows": 1337,
+            "mean_predicted": 0.448,
+            "actually_positive": 0.386
+          },
+          {
+            "band": "0.5-0.6",
+            "rows": 1272,
+            "mean_predicted": 0.551,
+            "actually_positive": 0.578
+          },
+          {
+            "band": "0.6-0.7",
+            "rows": 1358,
+            "mean_predicted": 0.652,
+            "actually_positive": 0.707
+          },
+          {
+            "band": "0.7-0.8",
+            "rows": 1873,
+            "mean_predicted": 0.754,
+            "actually_positive": 0.818
+          },
+          {
+            "band": "0.8-0.9",
+            "rows": 3171,
+            "mean_predicted": 0.856,
+            "actually_positive": 0.922
+          },
+          {
+            "band": "0.9-1.0",
+            "rows": 17374,
+            "mean_predicted": 0.974,
+            "actually_positive": 0.988
+          }
+        ]
+      },
+      "neutral_band": {
+        "band": [
+          0.35,
+          0.65
+        ],
+        "share_of_rows": 0.0786,
+        "accuracy_inside": 0.6174,
+        "accuracy_outside": 0.9556
+      }
+    },
+    "vader": {
+      "rows": 50000,
+      "accuracy": 0.7166,
+      "macro_f1": 0.7017,
+      "confusion_matrix": [
+        [
+          12326,
+          12539
+        ],
+        [
+          1633,
+          23502
+        ]
+      ]
+    }
+  },
+  "cross_domain": {
+    "all": {
+      "model": {
+        "rows": 3000,
+        "accuracy": 0.8923,
+        "macro_f1": 0.8923,
+        "confusion_matrix": [
+          [
+            1359,
+            141
+          ],
+          [
+            182,
+            1318
+          ]
+        ],
+        "calibration": {
+          "expected_calibration_error": 0.0382,
+          "bins": [
+            {
+              "band": "0.0-0.1",
+              "rows": 815,
+              "mean_predicted": 0.029,
+              "actually_positive": 0.02
+            },
+            {
+              "band": "0.1-0.2",
+              "rows": 285,
+              "mean_predicted": 0.146,
+              "actually_positive": 0.088
+            },
+            {
+              "band": "0.2-0.3",
+              "rows": 171,
+              "mean_predicted": 0.248,
+              "actually_positive": 0.164
+            },
+            {
+              "band": "0.3-0.4",
+              "rows": 132,
+              "mean_predicted": 0.354,
+              "actually_positive": 0.341
+            },
+            {
+              "band": "0.4-0.5",
+              "rows": 138,
+              "mean_predicted": 0.449,
+              "actually_positive": 0.493
+            },
+            {
+              "band": "0.5-0.6",
+              "rows": 115,
+              "mean_predicted": 0.55,
+              "actually_positive": 0.557
+            },
+            {
+              "band": "0.6-0.7",
+              "rows": 148,
+              "mean_predicted": 0.652,
+              "actually_positive": 0.716
+            },
+            {
+              "band": "0.7-0.8",
+              "rows": 166,
+              "mean_predicted": 0.755,
+              "actually_positive": 0.88
+            },
+            {
+              "band": "0.8-0.9",
+              "rows": 278,
+              "mean_predicted": 0.852,
+              "actually_positive": 0.932
+            },
+            {
+              "band": "0.9-1.0",
+              "rows": 752,
+              "mean_predicted": 0.968,
+              "actually_positive": 0.988
+            }
+          ]
+        },
+        "neutral_band": {
+          "band": [
+            0.35,
+            0.65
+          ],
+          "share_of_rows": 0.1323,
+          "accuracy_inside": 0.5919,
+          "accuracy_outside": 0.9381
+        }
+      },
+      "vader": {
+        "rows": 3000,
+        "accuracy": 0.7553,
+        "macro_f1": 0.7448,
+        "confusion_matrix": [
+          [
+            828,
+            672
+          ],
+          [
+            62,
+            1438
+          ]
+        ]
+      }
+    },
+    "restaurants (Yelp)": {
+      "model": {
+        "rows": 1000,
+        "accuracy": 0.893,
+        "macro_f1": 0.893,
+        "confusion_matrix": [
+          [
+            444,
+            56
+          ],
+          [
+            51,
+            449
+          ]
+        ],
+        "calibration": {
+          "expected_calibration_error": 0.0523,
+          "bins": [
+            {
+              "band": "0.0-0.1",
+              "rows": 221,
+              "mean_predicted": 0.034,
+              "actually_positive": 0.018
+            },
+            {
+              "band": "0.1-0.2",
+              "rows": 111,
+              "mean_predicted": 0.149,
+              "actually_positive": 0.063
+            },
+            {
+              "band": "0.2-0.3",
+              "rows": 60,
+              "mean_predicted": 0.25,
+              "actually_positive": 0.117
+            },
+            {
+              "band": "0.3-0.4",
+              "rows": 49,
+              "mean_predicted": 0.355,
+              "actually_positive": 0.184
+            },
+            {
+              "band": "0.4-0.5",
+              "rows": 54,
+              "mean_predicted": 0.45,
+              "actually_positive": 0.444
+            },
+            {
+              "band": "0.5-0.6",
+              "rows": 41,
+              "mean_predicted": 0.552,
+              "actually_positive": 0.585
+            },
+            {
+              "band": "0.6-0.7",
+              "rows": 62,
+              "mean_predicted": 0.652,
+              "actually_positive": 0.694
+            },
+            {
+              "band": "0.7-0.8",
+              "rows": 56,
+              "mean_predicted": 0.757,
+              "actually_positive": 0.857
+            },
+            {
+              "band": "0.8-0.9",
+              "rows": 118,
+              "mean_predicted": 0.853,
+              "actually_positive": 0.915
+            },
+            {
+              "band": "0.9-1.0",
+              "rows": 228,
+              "mean_predicted": 0.966,
+              "actually_positive": 0.991
+            }
+          ]
+        },
+        "neutral_band": {
+          "band": [
+            0.35,
+            0.65
+          ],
+          "share_of_rows": 0.153,
+          "accuracy_inside": 0.6536,
+          "accuracy_outside": 0.9362
+        }
+      },
+      "vader": {
+        "rows": 1000,
+        "accuracy": 0.727,
+        "macro_f1": 0.7102,
+        "confusion_matrix": [
+          [
+            243,
+            257
+          ],
+          [
+            16,
+            484
+          ]
+        ]
+      }
+    },
+    "films (IMDb)": {
+      "model": {
+        "rows": 1000,
+        "accuracy": 0.884,
+        "macro_f1": 0.8838,
+        "confusion_matrix": [
+          [
+            462,
+            38
+          ],
+          [
+            78,
+            422
+          ]
+        ],
+        "calibration": {
+          "expected_calibration_error": 0.0538,
+          "bins": [
+            {
+              "band": "0.0-0.1",
+              "rows": 277,
+              "mean_predicted": 0.03,
+              "actually_positive": 0.029
+            },
+            {
+              "band": "0.1-0.2",
+              "rows": 101,
+              "mean_predicted": 0.144,
+              "actually_positive": 0.139
+            },
+            {
+              "band": "0.2-0.3",
+              "rows": 67,
+              "mean_predicted": 0.246,
+              "actually_positive": 0.164
+            },
+            {
+              "band": "0.3-0.4",
+              "rows": 48,
+              "mean_predicted": 0.353,
+              "actually_positive": 0.333
+            },
+            {
+              "band": "0.4-0.5",
+              "rows": 47,
+              "mean_predicted": 0.446,
+              "actually_positive": 0.617
+            },
+            {
+              "band": "0.5-0.6",
+              "rows": 43,
+              "mean_predicted": 0.548,
+              "actually_positive": 0.744
+            },
+            {
+              "band": "0.6-0.7",
+              "rows": 56,
+              "mean_predicted": 0.65,
+              "actually_positive": 0.732
+            },
+            {
+              "band": "0.7-0.8",
+              "rows": 70,
+              "mean_predicted": 0.758,
+              "actually_positive": 0.9
+            },
+            {
+              "band": "0.8-0.9",
+              "rows": 88,
+              "mean_predicted": 0.853,
+              "actually_positive": 0.955
+            },
+            {
+              "band": "0.9-1.0",
+              "rows": 203,
+              "mean_predicted": 0.963,
+              "actually_positive": 0.995
+            }
+          ]
+        },
+        "neutral_band": {
+          "band": [
+            0.35,
+            0.65
+          ],
+          "share_of_rows": 0.143,
+          "accuracy_inside": 0.5944,
+          "accuracy_outside": 0.9323
+        }
+      },
+      "vader": {
+        "rows": 1000,
+        "accuracy": 0.771,
+        "macro_f1": 0.7654,
+        "confusion_matrix": [
+          [
+            308,
+            192
+          ],
+          [
+            37,
+            463
+          ]
+        ]
+      }
+    },
+    "phones (Amazon)": {
+      "model": {
+        "rows": 1000,
+        "accuracy": 0.9,
+        "macro_f1": 0.9,
+        "confusion_matrix": [
+          [
+            453,
+            47
+          ],
+          [
+            53,
+            447
+          ]
+        ],
+        "calibration": {
+          "expected_calibration_error": 0.0456,
+          "bins": [
+            {
+              "band": "0.0-0.1",
+              "rows": 317,
+              "mean_predicted": 0.026,
+              "actually_positive": 0.013
+            },
+            {
+              "band": "0.1-0.2",
+              "rows": 73,
+              "mean_predicted": 0.145,
+              "actually_positive": 0.055
+            },
+            {
+              "band": "0.2-0.3",
+              "rows": 44,
+              "mean_predicted": 0.248,
+              "actually_positive": 0.227
+            },
+            {
+              "band": "0.3-0.4",
+              "rows": 35,
+              "mean_predicted": 0.353,
+              "actually_positive": 0.571
+            },
+            {
+              "band": "0.4-0.5",
+              "rows": 37,
+              "mean_predicted": 0.451,
+              "actually_positive": 0.405
+            },
+            {
+              "band": "0.5-0.6",
+              "rows": 31,
+              "mean_predicted": 0.549,
+              "actually_positive": 0.258
+            },
+            {
+              "band": "0.6-0.7",
+              "rows": 30,
+              "mean_predicted": 0.657,
+              "actually_positive": 0.733
+            },
+            {
+              "band": "0.7-0.8",
+              "rows": 40,
+              "mean_predicted": 0.749,
+              "actually_positive": 0.875
+            },
+            {
+              "band": "0.8-0.9",
+              "rows": 72,
+              "mean_predicted": 0.848,
+              "actually_positive": 0.931
+            },
+            {
+              "band": "0.9-1.0",
+              "rows": 321,
+              "mean_predicted": 0.974,
+              "actually_positive": 0.981
+            }
+          ]
+        },
+        "neutral_band": {
+          "band": [
+            0.35,
+            0.65
+          ],
+          "share_of_rows": 0.101,
+          "accuracy_inside": 0.495,
+          "accuracy_outside": 0.9455
+        }
+      },
+      "vader": {
+        "rows": 1000,
+        "accuracy": 0.768,
+        "macro_f1": 0.7569,
+        "confusion_matrix": [
+          [
+            277,
+            223
+          ],
+          [
+            9,
+            491
+          ]
+        ]
+      }
+    }
+  },
+  "top_terms": {
+    "negative": [
+      "disappointing",
+      "disappointment",
+      "worst",
+      "disappointed",
+      "boring",
+      "poor",
+      "awful",
+      "not",
+      "horrible",
+      "terrible",
+      "bad",
+      "at best",
+      "poorly",
+      "waste",
+      "useless",
+      "instead",
+      "sucks",
+      "garbage",
+      "two stars",
+      "than this",
+      "dull",
+      "waste of",
+      "junk",
+      "nothing",
+      "unfortunately"
+    ],
+    "positive": [
+      "great",
+      "excellent",
+      "good",
+      "best",
+      "awesome",
+      "amazing",
+      "perfect",
+      "fantastic",
+      "wonderful",
+      "my only",
+      "recommend this",
+      "fun",
+      "pleased",
+      "love it",
+      "better than",
+      "love",
+      "love this",
+      "enjoyable",
+      "is must",
+      "solid",
+      "favorite",
+      "helps",
+      "classic",
+      "worth the",
+      "great product"
+    ]
+  },
+  "artefact": "sentiment-v1.joblib",
+  "bytes": 3201758,
+  "sha256": "2c51cea72dac701c45156b67146eb7a97bcf1a1d783aabd683a0539fc6a3e03f"
+}

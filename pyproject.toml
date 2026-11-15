@@ -1,0 +1,68 @@
+[project]
+name = "sentiment-lens"
+version = "0.0.1"
+description = "Upload a dataset, get a data profile and a sentiment dashboard."
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi==0.163.1",
+    "uvicorn==0.54.0",
+    "pandas==3.1.1",
+    "pyarrow==26.0.1",
+    "openpyxl==3.1.5",
+    "defusedxml==0.7.1",
+    "charset-normalizer==3.5.2",
+    "scikit-learn==1.9.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.2.0",
+    "pytest-cov==7.1.0",
+    "httpx2==2.16.0",
+    "ruff==0.17.5",
+    "mypy==2.4.1",
+    "pre-commit==4.7.0",
+    "bandit==1.9.4",
+    "pip-audit==2.10.1",
+    "pip-tools==7.6.2",
+    "vaderSentiment==3.3.2",
+    "locust==2.47.0",
+    "pandas-stubs==3.1.0.261029",
+    "types-openpyxl==3.1.5.20261017",
+    "types-defusedxml==0.7.0.20260504",
+]
+
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "E501"]
+"scripts/*" = ["S311"]  # seeded random for sample data, not security
+
+[tool.mypy]
+strict = true
+files = ["app", "tests"]
+
+[[tool.mypy.overrides]]
+module = ["tests.load.*"]
+disallow_untyped_calls = false  # Locust's response helpers have no type hints
+
+[[tool.mypy.overrides]]
+module = ["pyarrow", "pyarrow.*", "sklearn", "sklearn.*", "joblib", "vaderSentiment.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# basetemp keeps pytest's temporary files inside the project folder
+addopts = "--cov=app --cov-report=term-missing --cov-fail-under=80 --basetemp=.cache/pytest-tmp"

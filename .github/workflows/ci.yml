@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: pip install --require-hashes -r requirements.txt
+      - run: pip install -e ".[dev]"
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: mypy
+      - run: pytest
+      - run: bandit -r app -ll
+      - run: pip-audit --skip-editable
+
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t sentiment-lens .
+      - name: healthz answers within 5 seconds
+        run: |
+          docker run -d --name sl -p 8000:8000 --read-only --tmpfs /tmp sentiment-lens
+          for i in 1 2 3 4 5; do
+            curl -fsS http://127.0.0.1:8000/healthz && exit 0
+            sleep 1
+          done
+          docker logs sl
+          exit 1
+      - name: container does not run as root
+        run: test "$(docker exec sl id -u)" != "0"

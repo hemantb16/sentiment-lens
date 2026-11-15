@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sentiment Lens</title>
+  <meta name="description" content="Upload a table with a text column and see what the data looks like and how positive or negative it is.">
+  <link rel="preload" href="/static/fonts/IBMPlexSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/static/app.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="mast">
+    <a class="wordmark" href="/">Sentiment Lens</a>
+    <button type="button" class="link" id="restart" hidden>Start again with another file</button>
+  </header>
+
+  <main id="main">
+    <section id="view-start" aria-labelledby="start-title">
+      <h1 id="start-title" tabindex="-1">Upload a table of comments and read what people are saying, and how they feel about it.</h1>
+
+      <div class="drop" id="drop">
+        <label class="button" for="file">Choose a file</label>
+        <input class="sr-only" type="file" id="file"
+               accept=".csv,.tsv,.txt,.xlsx,.json,.jsonl,.ndjson,.parquet">
+        <span class="drop-hint">or drop it anywhere in this box</span>
+        <p class="fine mono">CSV · TSV · TXT · XLSX · JSON · JSONL · Parquet &nbsp; up to 20 MB</p>
+      </div>
+      <p class="error" id="start-error" role="alert" hidden></p>
+      <div class="busy" id="start-busy" hidden>
+        <progress aria-labelledby="start-busy-text"></progress>
+        <span id="start-busy-text"></span>
+      </div>
+
+      <div class="samples">
+        <h2 class="label">No file to hand? Try sample data</h2>
+        <ul id="samples" class="plain"></ul>
+      </div>
+
+      <p class="fine privacy">Your file is read in memory, never saved to disk and never logged. It is forgotten after 30 minutes, or as soon as you start again.</p>
+    </section>
+
+    <section id="view-map" aria-labelledby="map-title" hidden>
+      <h1 id="map-title" tabindex="-1">Check the columns</h1>
+      <p class="lede" id="map-lede"></p>
+      <ul class="notes" id="map-warnings" hidden></ul>
+
+      <form id="map-form" class="fields">
+        <div class="field">
+          <label for="col-text">Text to analyse</label>
+          <select id="col-text" required></select>
+        </div>
+        <div class="field">
+          <label for="col-date">Date <span class="optional">optional</span></label>
+          <select id="col-date"></select>
+        </div>
+        <div class="field">
+          <label for="col-category">Category <span class="optional">optional</span></label>
+          <select id="col-category"></select>
+        </div>
+        <div class="actions">
+          <button type="submit" class="button" id="analyse">Analyse</button>
+        </div>
+      </form>
+      <p class="error" id="map-error" role="alert" hidden></p>
+
+      <h2 class="label">First rows</h2>
+      <div class="scroll" id="map-preview" tabindex="0" role="region" aria-label="First rows of the file"></div>
+    </section>
+
+    <section id="view-work" aria-labelledby="work-title" hidden>
+      <h1 id="work-title" tabindex="-1">Analysing</h1>
+      <div class="busy wide">
+        <progress id="work-bar" max="1" value="0" aria-labelledby="work-text"></progress>
+        <span id="work-text" class="mono">Waiting to start</span>
+      </div>
+      <button type="button" class="button quiet" id="cancel">Cancel</button>
+      <div class="skeleton" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    </section>
+
+    <div id="view-dash" hidden></div>
+  </main>
+
+  <footer class="foot">
+    <p>English text only. The model was trained on product reviews and is less accurate on other kinds of writing.</p>
+  </footer>
+
+  <p class="sr-only" id="status" role="status" aria-live="polite"></p>
+</body>
+</html>

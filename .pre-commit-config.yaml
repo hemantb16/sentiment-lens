@@ -1,0 +1,21 @@
+# Local hooks: they run the tools pinned in pyproject.toml from the active
+# virtualenv, so pre-commit downloads nothing and keeps no cache of its own.
+repos:
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: ruff check --fix
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: ruff format
+        entry: ruff format
+        language: system
+        types: [python]
+      - id: mypy
+        name: mypy
+        entry: mypy
+        language: system
+        types: [python]
+        pass_filenames: false
