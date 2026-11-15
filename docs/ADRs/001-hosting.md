@@ -1,6 +1,11 @@
 # ADR-001: Hosting
 
-Status: accepted (provisional until the Sprint 5 re-check) · Date: 2026-11-15
+Status: on hold · Date: 2026-11-15
+
+**Update, 2026-11-16:** the owner decided not to deploy for now. The project lives
+on GitHub only and runs locally or from the Docker image. The analysis below
+stands as the plan if that changes; its free-tier figures must be re-checked
+first, because they will have aged.
 
 ## Context
 

@@ -6,7 +6,10 @@ plain dashboard: what the data looks like, and how positive or negative it is.
 Status: Sprint 4 done. The whole flow works in the browser: upload a file (or
 pick a sample), check the columns, watch the progress bar, read the dashboard,
 download the results. It is hardened (security headers, rate limits, a bounded
-job queue, timed deletion) and load-tested. Not yet done: deployment (Sprint 5).
+job queue, timed deletion) and load-tested.
+
+It is not hosted anywhere: this repository is the project. Run it on your own
+machine with the steps below, or from the Docker image.
 
 Security design and known gaps: [docs/SECURITY.md](docs/SECURITY.md). Load-test
 results: [docs/PERFORMANCE.md](docs/PERFORMANCE.md).
