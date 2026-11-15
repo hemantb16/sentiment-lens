@@ -23,7 +23,18 @@ jobs:
       - run: ruff check .
       - run: ruff format --check .
       - run: mypy
-      - run: pytest
+      - name: pytest
+        shell: bash
+        # Failing tests are repeated as annotations, so they show on the run's
+        # summary page without opening the log.
+        run: |
+          set -o pipefail
+          pytest -rfE 2>&1 | tee pytest.log || {
+            grep -E '^(FAILED|ERROR) |^E  ' pytest.log | head -n 12 | while read -r line; do
+              echo "::error::${line:0:400}"
+            done
+            exit 1
+          }
       - run: bandit -r app -ll
       - run: pip-audit --skip-editable
 
