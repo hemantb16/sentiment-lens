@@ -7,6 +7,11 @@ with their real values.
 """
 
 import os
+from pathlib import Path
+
+# pytest keeps its temporary files in .cache/pytest-tmp (see pyproject.toml) but
+# only creates the last folder itself; .cache does not exist in a fresh checkout.
+(Path(__file__).resolve().parents[1] / ".cache").mkdir(exist_ok=True)
 
 for name in (
     "SL_RATE_UPLOADS_PER_HOUR",
